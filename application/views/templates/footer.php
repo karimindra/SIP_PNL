@@ -48,17 +48,18 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script>
 
-<!-- Datatables -->
-<script src="<?= base_url('assets/') ?>vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= base_url('assets/') ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/rowreorder/1.2.7/js/dataTables.rowReorder.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
-
-<!-- Sweet Alert 2 -->
-<script src="<?= base_url('assets/') ?>vendor/sweetalert/sweetalert2.all.min.js"></script>
+<!-- Libraries -->
+<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 
 <script>
     $(document).ready(function() {
+
+        $(function() {
+            CKEDITOR.replace('ckeditor', {
+                filebrowserImageBrowseUrl: '<?php echo base_url('assets/kcfinder/browse.php'); ?>',
+                height: '400px'
+            });
+        });
 
         // pengaturan
         $(document).on("click", "#ubah-jabatan", function() {
