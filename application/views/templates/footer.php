@@ -49,17 +49,23 @@
 <script src="<?= base_url('assets/') ?>js/sb-admin-2.min.js"></script>
 
 <!-- Libraries -->
-<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script src="<?= base_url('assets/') ?>ckeditor5/ckeditor.js"></script>
 
 <script>
     $(document).ready(function() {
 
-        $(function() {
-            CKEDITOR.replace('ckeditor', {
-                filebrowserImageBrowseUrl: '<?php echo base_url('assets/kcfinder/browse.php'); ?>',
-                height: '400px'
+        DecoupledEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                const toolbarContainer = document.querySelector('#toolbar-container');
+
+                $("p").addClass("text-gray-900")
+
+                toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+            })
+            .catch(error => {
+                console.error(error);
             });
-        });
 
         // pengaturan
         $(document).on("click", "#ubah-jabatan", function() {
