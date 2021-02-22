@@ -14,9 +14,11 @@
             <div id="toolbar-container"></div>
 
             <!-- This container will become the editable. -->
-            <div id="editor">
-                <p>Paragraph</p>
-            </div>
+            <form action="">
+                <div id="editor">
+                    <p>Paragraph</p>
+                </div>
+            </form>
 
         </div>
     </div>
