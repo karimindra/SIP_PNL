@@ -14,6 +14,6 @@ class Template
         $this->_ci->load->view('templates/sidebar', $data);
         $this->_ci->load->view('templates/topbar', $data);
         $this->_ci->load->view($content, $data);
-        $this->_ci->load->view('templates/footer', $data);
+        // $this->_ci->load->view('templates/footer', $data);
     }
 }
