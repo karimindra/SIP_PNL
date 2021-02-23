@@ -49,7 +49,7 @@
                                         <td><?= $row['nama_sub_bab']; ?></td>
                                         <td><?= $row['isi_sub_bab'] ? $row['isi_sub_bab'] : '-'; ?></td>
                                         <td>
-                                            <a href="<?= base_url('sub_bab/edit'); ?>" class="btn btn-success">Edit</a>
+                                            <a href="<?= base_url('sub_bab/edit/') . $row['id']; ?>" class="btn btn-success">Edit</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -99,79 +99,6 @@
 
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-
-        $(document).on("click", "#btn-ubah", function() {
-
-            var id = $(this).data('id')
-
-            $.ajax({
-                url: "<?= base_url('bab/ajax_edit') ?>",
-                type: "POST",
-                dataType: "JSON",
-                data: {
-                    id: id
-                },
-                success: function(data) {
-                    $(".modal-body #id_bab").val(data.id)
-                    $(".modal-body #nama_bab").val(data.nama_bab)
-                    $(".modal-body #isi_bab").val(data.isi_bab)
-                    $('#ubah-dokumen').modal('show')
-
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    alert('Internal Error');
-                }
-            });
-        })
-
-        $("#formUbahBab").submit(function(e) {
-            e.preventDefault();
-
-            var form = $("#formUbahBab");
-            var formData = $(this).serialize();
-
-            $.ajax({
-                url: form.attr('action'),
-                type: form.attr('method'),
-                dataType: 'json',
-                data: formData,
-                success: function(data) {
-                    if (data.status) {
-                        $('#ubahBab').modal('toggle');
-                        location.reload();
-                    } else {
-
-                        $.each(data.errors, function(key, value) {
-                            $('[name="' + key + '"]').addClass('is-invalid');
-                            $('[name="' + key + '"]').next().text(value);
-                            if (value == "") {
-                                $('[name="' + key + '"]').removeClass('is-invalid');
-                                $('[name="' + key + '"]').addClass('is-valid');
-                            }
-                        });
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    alert('Internal Error');
-                }
-            });
-
-            $('#formUbahBab input').on('keyup', function() {
-                $(this).removeClass('is-valid is-invalid');
-            });
-        });
-
-        $('.modal').on('show.bs.modal', function(e) {
-            $("#formUbahBab")[0].reset()
-            $(".is-valid").removeClass("is-valid");
-            $(".is-invalid").removeClass("is-invalid");
-            $(".invalid-feedback").empty();
-        });
-    })
-</script>
 
 </body>
 

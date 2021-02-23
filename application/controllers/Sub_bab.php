@@ -8,6 +8,7 @@ class Sub_bab extends CI_Controller
         parent::__construct();
         $this->load->model('sub_bab_model', 'model');
     }
+
     public function index()
     {
         $data = [
@@ -18,14 +19,17 @@ class Sub_bab extends CI_Controller
         $this->template->render_page('sub_bab/index', $data);
     }
 
-    public function ajax_edit()
+    public function edit($id)
     {
-        $id = $this->input->post('id');
-        $data = $this->model->getSubBab($id);
-        echo json_encode($data);
+        $data = [
+            'judul' => 'Edit Data Sub Bab',
+            'data' => $this->model->getSubBab($id)
+        ];
+
+        $this->template->render_page('sub_bab/edit', $data);
     }
 
-    public function edit()
+    public function edit_subbab()
     {
         if ($this->input->is_ajax_request() == true) {
 

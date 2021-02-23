@@ -11,7 +11,12 @@ class Sub_bab_model extends CI_Model
                 ->get()->result_array();
             // return $this->db->get('tbl_sub_bab')->result_array();
         } else {
-            return $this->db->get_where('tbl_sub_bab', ['id' => $id])->row_array();
+            return $this->db->select('b.nama_bab as bab, sb.*')
+                ->from('tbl_sub_bab AS sb')
+                ->join('tbl_bab AS b', 'sb.bab_id=b.id')
+                ->where('sb.id', $id)
+                ->get()->row_array();
+            // return $this->db->get_where('tbl_sub_bab', ['id' => $id])->row_array();
         }
     }
 
