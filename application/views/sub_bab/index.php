@@ -45,7 +45,7 @@
                                 <?php foreach ($data as $num => $row) : ?>
                                     <tr>
                                         <td><?= $num + 1; ?></td>
-                                        <td><?= $row['bab']; ?></td>
+                                        <td><?= $row['nama_bab']; ?></td>
                                         <td><?= $row['nama_sub_bab']; ?></td>
                                         <td><?= $row['isi_sub_bab'] ? $row['isi_sub_bab'] : '-'; ?></td>
                                         <td>

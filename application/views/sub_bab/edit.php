@@ -11,24 +11,33 @@
                 <?= form_open('sub_bab/edit_subbab', ['class' => 'text-gray-900']); ?>
                 <div class="card-body">
                     <div class="row">
+                        <input type="hidden" name="id" value="<?= $data['id']; ?>">
+                        <input type="hidden" name="bab_id" value="<?= $data['bab_id']; ?>">
+
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="bab">Bab</label>
-                                <input type="text" name="bab_id" id="bab" class="form-control" value="<?= $data['bab']; ?>" readonly>
+                                <input type="text" id="bab" class="form-control" value="<?= $data['nama_bab']; ?>" readonly>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label for="nama_sub_bab">Sub Bab</label>
-                                <input type="text" name="nama_sub_bab_id" id="nama_sub_bab" class="form-control" value="<?= $data['nama_sub_bab']; ?>">
+                                <input type="text" name="nama_sub_bab" id="nama_sub_bab" class="form-control <?= form_error('nama_sub_bab') ? 'is-invalid' : ''; ?>" value="<?= set_value('nama_sub_bab') ? set_value('nama_sub_bab') : $data['nama_sub_bab']; ?>">
+                                <div class="invalid-feedback">
+                                    <?= form_error('nama_sub_bab'); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="isi_sub_bab">Isi Sub Bab</label>
-                        <textarea name="isi_sub_bab" id="isi_sub_bab" cols="30" rows="10" class="form-control"></textarea>
+                        <textarea name="isi_sub_bab" id="isi_sub_bab" cols="30" rows="10" class="form-control <?= form_error('isi_sub_bab') ? 'is-invalid' : ''; ?>"><?= set_value('isi_sub_bab') ? set_value('isi_sub_bab') : $data['isi_sub_bab']; ?></textarea>
+                        <div class="invalid-feedback">
+                            <?= form_error('isi_sub_bab'); ?>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-success btn-block">Simpan Data</button>
+                    <button type="submit" name="ubah" class="btn btn-success btn-block">Simpan Data</button>
                 </div>
                 <?= form_close() ?>
             </div>

@@ -31,43 +31,33 @@ class Sub_bab extends CI_Controller
 
     public function edit_subbab()
     {
-        if ($this->input->is_ajax_request() == true) {
-
+        if (isset($_POST['ubah'])) {
             $id = $this->input->post('id');
-            $nama_bab = $this->input->post('nama_bab');
-            $data = $this->model->getBab($id);
+            $nama = $this->input->post('nama_sub_bab');
+            $data = $this->model->getSubBab($id);
 
-            if ($data['nama_bab'] == $nama_bab) {
-                $rule_nama_bab = 'required';
+            if ($data['nama_sub_bab'] == $nama) {
+                $rule_nama = 'required';
             } else {
-                $rule_nama_bab = 'required|is_unique[tbl_bab.nama_bab]';
+                $rule_nama = 'required|is_unique[tbl_sub_bab.nama_sub_bab]';
             }
 
-            $this->form_validation->set_rules('nama_bab', 'Nama Bab', $rule_nama_bab);
-            $this->form_validation->set_rules('isi_bab', 'Isi Bab', 'required');
-
-            $this->form_validation->set_error_delimiters('', '');
+            $this->form_validation->set_rules('nama_sub_bab', 'Sub Bab', $rule_nama);
+            $this->form_validation->set_rules('isi_sub_bab', 'Isi Sub Bab', 'required');
 
             if ($this->form_validation->run() == false) {
-                $errors = [
-                    'nama_bab' => form_error('nama_bab'),
-                    'isi_bab' => form_error('isi_bab'),
-                ];
-
                 $data = [
-                    'status' => FALSE,
-                    'errors' => $errors
+                    'judul' => 'Edit Data Sub Bab',
+                    'data' => $this->model->getSubBab($id)
                 ];
 
-                $this->output->set_content_type('application/json')->set_output(json_encode($data));
+                $this->template->render_page('sub_bab/edit', $data);
             } else {
-                $this->model->ubah_bab();
-                $data['status'] = TRUE;
-                $this->output->set_content_type('application/json')->set_output(json_encode($data));
+                $this->model->ubah_sub_bab();
+                redirect('sub_bab');
             }
         } else {
-            //echo "error";
-            redirect('bab');
+            redirect('sub_bab');
         }
     }
 }
