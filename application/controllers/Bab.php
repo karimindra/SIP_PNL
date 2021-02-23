@@ -15,7 +15,7 @@ class Bab extends CI_Controller
             'bab' => $this->model->getBab()
         ];
 
-        $this->template->render_page('manajemen_bab/index', $data);
+        $this->template->render_page('bab/index', $data);
     }
 
     public function ajax_edit()
