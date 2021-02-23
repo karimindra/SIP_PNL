@@ -34,7 +34,7 @@
                 <p class="lead text-gray-800 mb-5">Page Not Found</p>
                 <p class="text-gray-500 mb-0">Halaman tidak dapat ditemukan...</p>
                 <!-- redirect back to controller petugas method pasien -->
-                <a href="<?= base_url('home'); ?>">&larr; Silahkan kembali</a>
+                <a href="<?= base_url('bab'); ?>">&larr; Silahkan kembali</a>
             </div>
 
         </div>
@@ -47,7 +47,7 @@
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Skuy Ngoding <?= date('Y'); ?></span>
+                <span>Dibuat oleh Karimullah <?= date('Y'); ?></span>
             </div>
         </div>
     </footer>

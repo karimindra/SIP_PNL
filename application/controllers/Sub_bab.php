@@ -1,31 +1,31 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Bab extends CI_Controller
+class Sub_bab extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Bab_model', 'model');
+        $this->load->model('sub_bab_model', 'model');
     }
     public function index()
     {
         $data = [
-            'judul' => 'Manajemen Bab',
-            'bab' => $this->model->getBab()
+            'judul' => 'Manajemen Sub Bab',
+            'data' => $this->model->getSubBab()
         ];
 
-        $this->template->render_page('bab/index', $data);
+        $this->template->render_page('sub_bab/index', $data);
     }
 
     public function ajax_edit()
     {
         $id = $this->input->post('id');
-        $data = $this->model->getBab($id);
+        $data = $this->model->getSubBab($id);
         echo json_encode($data);
     }
 
-    public function edit_bab()
+    public function edit()
     {
         if ($this->input->is_ajax_request() == true) {
 

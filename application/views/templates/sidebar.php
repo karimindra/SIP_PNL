@@ -9,7 +9,6 @@
     <div class="sidebar-brand-text mx-3">SIP <sup>PNL 1B</sup></div>
   </a>
 
-
   <!-- Divider -->
   <hr class="sidebar-divider">
 
