@@ -32,6 +32,10 @@
                     </div>
                     <div class="form-group">
                         <label for="isi_sub_bab">Isi Sub Bab</label>
+                        <!-- <textarea name="isi_sub_bab" id="isi_sub_bab" cols="30" rows="10" class="form-control <?= form_error('isi_sub_bab') ? 'is-invalid' : ''; ?>"><?= set_value('isi_sub_bab') ? set_value('isi_sub_bab') : $data['isi_sub_bab']; ?></textarea>
+                        <div class="invalid-feedback">
+                            <?= form_error('isi_sub_bab'); ?>
+                        </div> -->
                         <textarea name="isi_sub_bab" id="isi_sub_bab" cols="30" rows="10" class="form-control <?= form_error('isi_sub_bab') ? 'is-invalid' : ''; ?>"><?= set_value('isi_sub_bab') ? set_value('isi_sub_bab') : $data['isi_sub_bab']; ?></textarea>
                         <div class="invalid-feedback">
                             <?= form_error('isi_sub_bab'); ?>
@@ -82,9 +86,31 @@
 
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
+<!-- libraries -->
+<script src="<?php echo base_url() . 'assets/summernote/summernote.min.js' ?>"></script>
 
 <script>
     $(document).ready(function() {
+
+        $("#isi_sub_bab").summernote({
+            placeholder: 'Content..',
+            tabsize: 2,
+            height: 300,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize']],
+                // ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['insert', ['picture', 'hr']],
+                ['view', ["fullscreen", "codeview"]],
+            ],
+
+            onImageUpload: function(files, editor, welEditable) {
+                sendFile(files[0], editor, welEditable);
+            }
+
+        });
 
         $(document).on("click", "#btn-ubah", function() {
 
